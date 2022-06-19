@@ -2,7 +2,7 @@
 
 ## News
 
-* 14 Jun 2022: We updated the evaluation code to fix a bug identified by @yichaopku ([Issue 13](https://github.com/alexa/massive/issues/13), [PR 14](https://github.com/alexa/massive/pull/14)). Please pull commit 0552cdd or later to use the remedied evaluation code. The baseline results on the leaderboard and the preprint paper will be updated by 17 Jun.
+* 14 Jun 2022: We updated the evaluation code to fix a bug identified by @yichaopku ([Issue 13](https://github.com/alexa/massive/issues/13), [PR 14](https://github.com/alexa/massive/pull/14)). Please pull commit 0552cdd or later to use the remedied evaluation code. The baseline results on the [leaderboard](https://eval.ai/web/challenges/challenge-page/1697/overview) have been updated, and the updated preprint paper will be posted to arXiv early next week.
 * 20 Apr 2022: Launch and release of the MASSIVE dataset, this repo, the MASSIVE paper, the leaderboard, and the Massively Multilingual NLU 2022 workshop and competition.
 
 ## Quick Links
@@ -221,7 +221,7 @@ For text-to-text modeling, we have included the following functions in `massive.
 For example, mT5 Base can be trained on an 8-GPU instance as follows:
 
 ```
-python -m torch.distributed.launch --nproc_per_node=8 scripts/train.py -c experiments/mt5_base_t2t_20220411.yml 2>&1 | tee /PATH/TO/LOG/FILE
+python -m torch.distributed.launch --nproc_per_node=8 scripts/train.py -c examples/mt5_base_t2t_20220411.yml 2>&1 | tee /PATH/TO/LOG/FILE
 ```
 
 ## Performing Inference on the Test Set
@@ -229,7 +229,7 @@ python -m torch.distributed.launch --nproc_per_node=8 scripts/train.py -c experi
 Test inference requires a `test` block in the configuration. See `examples/xlmr_base_test_20220411.yml` for an example. Test inference, including evaluation and output of all predictions, can be executed using the `scripts/test.py` script. For example:
 
 ```
-python -m torch.distributed.launch --nproc_per_node=8 scripts/test.py -c experiments/xlmr_base_test_20220411.yml 2>&1 | tee /PATH/TO/LOG/FILE
+python -m torch.distributed.launch --nproc_per_node=8 scripts/test.py -c examples/xlmr_base_test_20220411.yml 2>&1 | tee /PATH/TO/LOG/FILE
 ```
 
 Be sure to include a `test.predictions_file` in the config to output the predictions.
