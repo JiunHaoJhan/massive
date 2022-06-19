@@ -2,3 +2,6 @@ src/massive/**/__pycache__/*
 *~
 *.pyc
 *.swp
+checkpoints/*
+logs/*
+massive_datasets/*

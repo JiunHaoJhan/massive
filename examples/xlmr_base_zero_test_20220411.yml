@@ -4,12 +4,12 @@ max_length: &max_length 512
 
 model:
   type: xlmr intent classification slot filling
-  checkpoint: /PATH/TO/CHECKPOINTS/xlmr_base_zero_20220411/checkpoint-3000/
+  checkpoint: checkpoints/xlmr_base_zero_20220411/checkpoint-39000/
 
 tokenizer:
   type: xlmr base
   tok_args:
-    vocab_file: /PATH/TO/PRETRAINED/MODELS/xlm-roberta-base-sentencepiece.bpe.model
+    vocab_file: checkpoints/xlmr_base_zero_20220411/checkpoint-9900/sentencepiece.bpe.model
     max_len: *max_length
 
 collator:
@@ -19,18 +19,19 @@ collator:
     padding: longest
 
 test:
-  test_dataset: /PATH/TO/TESTDATA
+  test_dataset: massive_datasets/.test
   test_locales_remove: en-US
-  intent_labels: /PATH/TO/INTENTMAP
-  slot_labels: /PATH/TO/SLOTMAP
-  massive_path: /PATH/TO/RAW/MASSIVE/
+  intent_labels: massive_datasets/.intents
+  slot_labels: massive_datasets/.slots
+  massive_path: .
   slot_labels_ignore:
     - Other
   eval_metrics: all
   #predictions_file: /PATH/TO/LOGS/xlmr_base_zero_20220411/preds.jsonl
   trainer_args:
-    output_dir: /PATH/TO/CHECKPOINTS/xlmr_base_zero_20220411/
+    output_dir: checkpoints/xlmr_base_zero_20220411/
     per_device_eval_batch_size: 128
+    eval_accumulation_steps: 4
     remove_unused_columns: false
     label_names:
       - intent_num
