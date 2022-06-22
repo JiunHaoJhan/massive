@@ -5,7 +5,7 @@ max_length: &max_length 512
 model:
   type: xlmr intent classification slot filling
   size: base
-  pretrained_weights: /PATH/TO/PRETRAINED/MODELS/xlm-roberta-base.bin
+  pretrained_weights: ../pretrained_models/xlmr.base/model.pt
   pretrained_weight_substring_transform: ['roberta', 'xlmr']
   strict_load_pretrained_weights: false
   model_config_args:
@@ -35,7 +35,7 @@ model:
 tokenizer:
   type: xlmr base
   tok_args:
-    vocab_file: /PATH/TO/PRETRAINED/MODELS/xlm-roberta-base-sentencepiece.bpe.model
+    vocab_file: ../pretrained_models/xlmr.base/sentencepiece.bpe.model
     max_len: *max_length
 
 collator:
@@ -45,16 +45,16 @@ collator:
     padding: longest
 
 train_val:
-  train_dataset: /PATH/TO/TRAINDATA
-  dev_dataset: /PATH/TO/DEVDATA
-  intent_labels: /PATH/TO/INTENTMAP
-  slot_labels: /PATH/TO/SLOTMAP
+  train_dataset: massive_datasets/.train
+  dev_dataset: massive_datasets/.dev
+  intent_labels: massive_datasets/.intents
+  slot_labels: massive_datasets/.slots
   slot_labels_ignore:
     - Other
   eval_metrics: all
   trainer_args:
-    output_dir: /PATH/TO/CHECKPOINTS/xlmr_base_20220411/
-    logging_dir: /data/jgmf-sandbox/tensorboard/xlmr_base_20220411/
+    output_dir: checkpoints/xlmr_base_20220411/
+    logging_dir: logs/xlmr_base_20220411/
     save_strategy: epoch
     evaluation_strategy: epoch
     learning_rate: 2.8e-05
@@ -65,8 +65,9 @@ train_val:
     adam_epsilon: 1.0e-08
     weight_decay: 0.21
     gradient_accumulation_steps: 1
-    per_device_train_batch_size: 128
-    per_device_eval_batch_size: 128
+    per_device_train_batch_size: 64
+    per_device_eval_batch_size: 4
+    eval_accumulation_steps: 4
     num_train_epochs: 26
     remove_unused_columns: false
     label_names:

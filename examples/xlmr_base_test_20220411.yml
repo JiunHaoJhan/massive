@@ -4,12 +4,12 @@ max_length: &max_length 512
 
 model:
   type: xlmr intent classification slot filling
-  checkpoint: checkpoints/xlmr_base_20220411/checkpoint-229400/
+  checkpoint: checkpoints/xlmr_base_20220411/checkpoint-59644/
 
 tokenizer:
   type: xlmr base
   tok_args:
-    vocab_file: checkpoints/xlmr_base_20220411/checkpoint-229400/sentencepiece.bpe.model
+    vocab_file: checkpoints/xlmr_base_20220411/checkpoint-59644/sentencepiece.bpe.model
     max_len: *max_length
 
 collator:
@@ -22,7 +22,7 @@ test:
   test_dataset: massive_datasets/.test
   intent_labels: massive_datasets/.intents
   slot_labels: massive_datasets/.slots
-  massive_path: ~/massive_0614/massive
+  massive_path: .
   slot_labels_ignore:
     - Other
   eval_metrics: all

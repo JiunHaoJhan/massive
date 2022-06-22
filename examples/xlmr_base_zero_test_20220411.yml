@@ -4,12 +4,12 @@ max_length: &max_length 512
 
 model:
   type: xlmr intent classification slot filling
-  checkpoint: checkpoints/xlmr_base_zero_20220411/checkpoint-39000/
+  checkpoint: checkpoints/xlmr_base_zero_20220411/checkpoint-3900/
 
 tokenizer:
   type: xlmr base
   tok_args:
-    vocab_file: checkpoints/xlmr_base_zero_20220411/checkpoint-9900/sentencepiece.bpe.model
+    vocab_file: checkpoints/xlmr_base_zero_20220411/checkpoint-3900/sentencepiece.bpe.model
     max_len: *max_length
 
 collator:

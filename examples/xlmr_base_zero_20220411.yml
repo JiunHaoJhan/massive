@@ -69,8 +69,9 @@ train_val:
     adam_epsilon: 1.0e-09
     weight_decay: 0.11
     gradient_accumulation_steps: 1
-    per_device_train_batch_size: 16
+    per_device_train_batch_size: 64
     per_device_eval_batch_size: 16
+    eval_accumulation_steps: 4
     num_train_epochs: 850
     remove_unused_columns: false
     label_names:
@@ -79,4 +80,4 @@ train_val:
     logging_steps: 100
     log_level: info
     locale_eval_strategy: all and each
-    disable_tqdm: true
+    disable_tqdm: false
